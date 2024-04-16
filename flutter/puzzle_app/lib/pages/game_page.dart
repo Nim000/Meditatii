@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class MyContainer extends StatelessWidget {
-  const MyContainer({super.key});
+  MyContainer({this.color = Colors.blue});
+  Color color;
 
   @override
   Widget build(BuildContext context) {
-    return Container(width: 100, height: 100, color: Colors.blue);
+    return Container(width: 100, height: 100, color: color);
   }
 }
 
@@ -21,31 +22,14 @@ class GamePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            LongPressDraggable<int>(
+            Draggable<int>(
               // Data is the value this Draggable stores.
               data: 10,
-              feedback: Container(
-                color: Color.fromARGB(255, 255, 0, 0),
-                height: 100,
-                width: 100,
-                child: const Icon(Icons.directions_run),
+              feedback: MyContainer(),
+              childWhenDragging: MyContainer(
+                color: Colors.grey,
               ),
-              childWhenDragging: Container(
-                height: 100.0,
-                width: 100.0,
-                color: Color.fromARGB(255, 255, 230, 0),
-                child: const Center(
-                  child: Text('Child When Dragging'),
-                ),
-              ),
-              child: Container(
-                height: 100.0,
-                width: 100.0,
-                color: Color.fromARGB(255, 0, 60, 255),
-                child: const Center(
-                  child: Text('Draggable'),
-                ),
-              ),
+              child: MyContainer(),
             ),
             DragTarget<int>(
               builder: (
@@ -53,35 +37,9 @@ class GamePage extends StatelessWidget {
                 List<dynamic> accepted,
                 List<dynamic> rejected,
               ) {
-                return Container(
-                  height: 100.0,
-                  width: 100.0,
-                  color: const Color.fromARGB(255, 0, 212, 201),
-                  child: Center(
-                    child: Text('Value is updated to:'),
-                  ),
-                );
-              },
-              onAcceptWithDetails: (DragTargetDetails<int> details) {},
-            ),
-            DragTarget<int>(
-              builder: (
-                BuildContext context,
-                List<dynamic> accepted,
-                List<dynamic> rejected,
-              ) {
-                return Row(
-                  children: [
-                    Container(
-                      height: 100.0,
-                      width: 100.0,
-                      color: Color.fromARGB(255, 18, 212, 0),
-                      child: Center(
-                        child: Text('Value is updated to:'),
-                      ),
-                    ),
-                  ],
-                );
+                print(accepted);
+                print(rejected);
+                return MyContainer(color: Colors.grey);
               },
               onAcceptWithDetails: (DragTargetDetails<int> details) {},
             ),

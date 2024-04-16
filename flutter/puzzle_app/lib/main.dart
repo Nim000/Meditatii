@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:puzzle_app/pages/game_page.dart';
-import 'package:puzzle_app/pages/home_page.dart';
 
 void main() {
   runApp(const MyApp());
