@@ -6,8 +6,8 @@ class PuzzleBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 40,
-      height: 40,
+      width: 100,
+      height: 100,
       decoration: BoxDecoration(
           color: Color.fromARGB(255, 0, 153, 255),
           border: Border.all(color: Colors.black, width: 2)),

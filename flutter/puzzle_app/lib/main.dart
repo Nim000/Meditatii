@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:puzzle_app/pages/game_page.dart';
-import 'package:puzzle_app/pages/home_page.dart';
-import 'package:puzzle_app/pages/test.dart';
+import 'package:puzzle_app/pages/test_page.dart';
+import 'package:puzzle_app/pages/test_page1.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +19,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: TestPage(),
+      // home: GamePage(),
+      home: TestPage2(),
     );
   }
 }
