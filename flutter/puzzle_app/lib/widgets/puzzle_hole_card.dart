@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:puzzle_app/helper/UI_size_helper.dart';
 
-class PuzzleHole extends StatefulWidget {
-  const PuzzleHole({super.key});
+class PuzzleHoleCard extends StatefulWidget {
+  const PuzzleHoleCard({super.key});
 
   @override
-  State<PuzzleHole> createState() => _PuzzleHoleState();
+  State<PuzzleHoleCard> createState() => _PuzzleHoleCardState();
 }
 
-class _PuzzleHoleState extends State<PuzzleHole> {
+class _PuzzleHoleCardState extends State<PuzzleHoleCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100,
-      width: 100,
+      height: UISizeHelper.defaultCardSize,
+      width: UISizeHelper.defaultCardSize,
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
