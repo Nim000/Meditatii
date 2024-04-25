@@ -13,7 +13,7 @@ class _BoxTargetCardState extends State<BoxTargetCard> {
   @override
   Widget build(BuildContext context) {
     if (widget.boxTarget.boxValue != null)
-      widget.boxTarget.boxValue.componnent.color;
+      widget.boxTarget.boxValue!.componnent.color;
     return const Placeholder();
   }
 }
