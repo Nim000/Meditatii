@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:puzzle_app/pages/game_page.dart';
+import 'package:puzzle_app/pages/test.dart';
 import 'package:puzzle_app/pages/test_page.dart';
 import 'package:puzzle_app/pages/test_page1.dart';
 
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // home: GamePage(),
-      home: TestPage2(),
+      home: TestPage(),
     );
   }
 }

@@ -27,7 +27,7 @@ class _BoxTargetCardState extends State<BoxTargetCard> {
     } else {
       return DragTarget<BoxValue>(
           onAcceptWithDetails: (DragTargetDetails<BoxValue> details) {
-        print(details.data);
+        widget.moveBoxValue(details.data, widget.boxTarget);
       }, builder: (
         BuildContext context,
         List<dynamic> accepted,

@@ -12,9 +12,22 @@ class TestPage2 extends StatefulWidget {
 }
 
 class _TestPage2State extends State<TestPage2> {
-  List<BoxTarget> boxTargetsList = [BoxTarget(), BoxTarget()];
+  List<BoxTarget> boxTargetsList = [
+    BoxTarget(),
+    BoxTarget(),
+    BoxTarget(),
+    BoxTarget(),
+    BoxTarget()
+  ];
 
   List<BoxValue> boxValuesList = [
+    BoxValue(
+      componnent: Componnent(
+        height: 0,
+        width: 0,
+        color: Colors.red,
+      ),
+    ),
     BoxValue(
       componnent: Componnent(
         height: 0,
@@ -27,11 +40,13 @@ class _TestPage2State extends State<TestPage2> {
   @override
   void initState() {
     boxValuesList[0].setEmptyBox(boxTargetsList[0]);
+    boxValuesList[1].setEmptyBox(boxTargetsList[1]);
   }
 
   void moveBoxValue(BoxValue value, BoxTarget target) {
-    print(value);
-    print(target);
+    setState(() {
+      value.setEmptyBox(target);
+    });
   }
 
   @override
@@ -40,7 +55,6 @@ class _TestPage2State extends State<TestPage2> {
       child: Scaffold(
         body: Center(
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               BoxTargetCard(
                 boxTarget: boxTargetsList[0],
@@ -50,6 +64,22 @@ class _TestPage2State extends State<TestPage2> {
                 boxTarget: boxTargetsList[1],
                 moveBoxValue: moveBoxValue,
               ),
+              BoxTargetCard(
+                boxTarget: boxTargetsList[2],
+                moveBoxValue: moveBoxValue,
+              ),
+              Column(
+                children: [
+                  BoxTargetCard(
+                    boxTarget: boxTargetsList[3],
+                    moveBoxValue: moveBoxValue,
+                  ),
+                  BoxTargetCard(
+                    boxTarget: boxTargetsList[4],
+                    moveBoxValue: moveBoxValue,
+                  ),
+                ],
+              )
             ],
           ),
         ),
