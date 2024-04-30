@@ -10,6 +10,16 @@ class Componnent {
           for (int i = 0; i < height; i++)
             [for (int j = 0; j < width; j++) null]
         ];
+
+  int getHeight() {
+    return _array.length;
+  }
+
+  int getWidth() {
+    if (_array.isEmpty) return 0;
+    return _array[0].length;
+  }
+
   void set(int x, int y) {
     _array[y][x] = BoxValue(componnent: this);
   }

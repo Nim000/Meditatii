@@ -26,7 +26,9 @@ class _TestPage2State extends State<TestPage2> {
 
   @override
   void initState() {
-    boxValuesList[0].setEmptyBox(boxTargetsList[0]);
+    BoxValue boxValue = boxValuesList[0];
+    BoxTarget boxTarget = boxTargetsList[0];
+    boxValue.setEmptyBox(boxTarget);
   }
 
   void moveBoxValue(BoxValue value, BoxTarget target) {

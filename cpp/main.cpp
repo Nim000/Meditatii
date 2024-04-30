@@ -1,9 +1,12 @@
 #include <iostream>
 
 using namespace std;
+int f(int x){
+    return f(x);
+}
 
 int main()
 {
-    cout<<"Hello World"<<endl;
+    cout<<f(3);
     return 0;
 }
