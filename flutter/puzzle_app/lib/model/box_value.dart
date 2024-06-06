@@ -1,8 +1,11 @@
+import 'dart:ffi';
+
 import 'package:puzzle_app/model/component.dart';
 import 'package:puzzle_app/model/box_target.dart';
 
 class BoxValue {
   Componnent componnent;
+  bool isvisible = true;
   BoxTarget? _boxTarget;
   BoxValue({required this.componnent});
 

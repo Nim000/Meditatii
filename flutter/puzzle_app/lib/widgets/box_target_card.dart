@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:puzzle_app/helper/UI_size_helper.dart';
 import 'package:puzzle_app/model/box_target.dart';
 import 'package:puzzle_app/model/box_value.dart';
+import 'package:puzzle_app/model/component.dart';
+import 'package:puzzle_app/widgets/componnent_card.dart';
 import 'package:puzzle_app/widgets/puzzle_box_card.dart';
 import 'package:puzzle_app/widgets/puzzle_hole_card.dart';
 
@@ -18,13 +20,22 @@ class _BoxTargetCardState extends State<BoxTargetCard> {
   @override
   Widget build(BuildContext context) {
     if (widget.boxTarget.boxValue != null) {
-      widget.boxTarget.boxValue!.componnent.color;
+      BoxValue boxValue = widget.boxTarget.boxValue!;
+      Componnent componnent = boxValue.componnent;
       return Draggable<BoxValue>(
-          data: widget.boxTarget.boxValue,
-          child: PuzzleBoxCard(size: UISizeHelper.defaultCardSize),
-          feedback: PuzzleBoxCard(size: UISizeHelper.largeCardSize),
-          childWhenDragging: PuzzleHoleCard());
-          
+        data: boxValue,
+        child: PuzzleBoxCard(size: UISizeHelper.defaultCardSize),
+        // feedback: PuzzleBoxCard(size: UISizeHelper.largeCardSize),
+        feedback: ComponnentCard(componnent: componnent),
+        childWhenDragging: PuzzleHoleCard(),
+        onDragStarted: () {
+          for (int i = 0; i < componnent.getWidth(); i++) {
+            for (int j = 0; j < componnent.getHeight(); j++) {
+              componnent.get(i, j);
+            }
+          }
+        },
+      );
     } else {
       return DragTarget<BoxValue>(
           onAcceptWithDetails: (DragTargetDetails<BoxValue> details) {
