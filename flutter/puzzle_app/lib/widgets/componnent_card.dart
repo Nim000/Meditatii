@@ -9,21 +9,25 @@ class ComponnentCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const double boxSize = UISizeHelper.defaultCardSize;
     return Container(
-      width: 400,
-      height: 400,
+      width: componnent.getWidth() * boxSize,
+      height: componnent.getHeight() * boxSize,
       alignment: Alignment.center,
-      color: Colors.black,
+      // color: Colors.black,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              PuzzleBoxCard(size: UISizeHelper.defaultCardSize),
-              PuzzleBoxCard(size: UISizeHelper.defaultCardSize),
-            ],
-          ),
-          PuzzleBoxCard(size: UISizeHelper.defaultCardSize),
+          for (int i = 0; i < componnent.getHeight(); i++)
+            Row(
+              children: [
+                for (int j = 0; j < componnent.getWidth(); j++)
+                  if (componnent.get(j, i) != null)
+                    PuzzleBoxCard(size: boxSize)
+                  else
+                    SizedBox(width: boxSize, height: boxSize)
+              ],
+            ),
         ],
       ),
     );

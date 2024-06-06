@@ -19,6 +19,7 @@ class _TestPage2State extends State<TestPage2> {
     BoxTarget(),
     BoxTarget()
   ];
+  List<Componnent> componentsList = [Componnent(width: 3, height: 3)];
 
   List<BoxValue> boxValuesList = [
     BoxValue(
@@ -40,8 +41,10 @@ class _TestPage2State extends State<TestPage2> {
   @override
   void initState() {
     super.initState();
-    boxValuesList[0].setEmptyBox(boxTargetsList[0]);
-    boxValuesList[1].setEmptyBox(boxTargetsList[1]);
+    componentsList[0].set(0, 0);
+    componentsList[0].set(1, 0);
+    componentsList[0].get(0, 0)!.setEmptyBox(boxTargetsList[0]);
+    componentsList[0].get(1, 0)!.setEmptyBox(boxTargetsList[1]);
   }
 
   void moveBoxValue(BoxValue value, BoxTarget target) {
