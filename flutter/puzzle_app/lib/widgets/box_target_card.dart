@@ -24,6 +24,7 @@ class _BoxTargetCardState extends State<BoxTargetCard> {
           child: PuzzleBoxCard(size: UISizeHelper.defaultCardSize),
           feedback: PuzzleBoxCard(size: UISizeHelper.largeCardSize),
           childWhenDragging: PuzzleHoleCard());
+          
     } else {
       return DragTarget<BoxValue>(
           onAcceptWithDetails: (DragTargetDetails<BoxValue> details) {
