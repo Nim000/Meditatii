@@ -32,50 +32,91 @@ class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const double tileHeight = 175;
-    const double totalPriceHeight = 100;
     double total = 0;
+    const double totalPriceHeight = 100;
     List<Meal> meals = DummyData.getSelectedMeals();
     for (Meal meal in meals) {
       total += meal.price;
     }
     int nrOfTiles = meals.length;
+    double totalHeight = 10 + 40 + 1 + 100 + nrOfTiles * tileHeight;
+
     return Scaffold(
-      body: Column(
-        children: [
-          SizedBox(
-            height: nrOfTiles * tileHeight,
-            child: ListView.builder(
-              itemCount: nrOfTiles,
-              itemBuilder: (context, index) {
-                return ListCard(meal: meals[index], height: tileHeight);
-              },
-            ),
-          ),
-          Divider(
-            color: Colors.black,
-          ),
-          totalPriceWidget(100, total),
-          Spacer(),
-          TextButton(
-            onPressed: () {},
-            child: Container(
-              alignment: Alignment.center,
-              height: 40,
-              width: 400,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                color: Colors.purple,
+      body: Builder(
+        builder: (context) {
+          double avalibleHeight = MediaQuery.of(context).size.height;
+          print(avalibleHeight);
+          print(totalHeight);
+          if (totalHeight < avalibleHeight) {
+            return Column(
+              children: [
+                for (Meal meal in meals)
+                  ListCard(meal: meal, height: tileHeight),
+                Divider(
+                  height: 1,
+                ),
+                totalPriceWidget(totalPriceHeight, total),
+                Spacer(),
+                TextButton(
+                  onPressed: () {},
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: 40,
+                    width: 400,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      color: Colors.purple,
+                    ),
+                    child: const Text(
+                      'PLACE ORDER',
+                      style: TextStyle(color: Colors.white, fontSize: 13.0),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                )
+              ],
+            );
+          }
+          return Column(
+            children: [
+              SizedBox(
+                height: avalibleHeight - 150,
+                child: ListView.builder(
+                  itemCount: nrOfTiles,
+                  itemBuilder: (context, index) {
+                    return ListCard(meal: meals[index], height: tileHeight);
+                  },
+                ),
               ),
-              child: const Text(
-                'PLACE ORDER',
-                style: TextStyle(color: Colors.white, fontSize: 13.0),
+              Divider(
+                height: 1,
               ),
-            ),
-          ),
-          SizedBox(
-            height: 10,
-          )
-        ],
+              totalPriceWidget(totalPriceHeight, total),
+              Spacer(),
+              TextButton(
+                onPressed: () {},
+                child: Container(
+                  alignment: Alignment.center,
+                  height: 40,
+                  width: 400,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    color: Colors.purple,
+                  ),
+                  child: const Text(
+                    'PLACE ORDER',
+                    style: TextStyle(color: Colors.white, fontSize: 13.0),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              )
+            ],
+          );
+        },
       ),
     );
   }
