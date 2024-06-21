@@ -63,31 +63,25 @@ class _MealCardState extends State<MealCard> {
               height: 7,
             ),
             Row(children: [
-              Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    if (widget.meal.isDiscounted())
-                      Text(
-                        '\$${widget.meal.originalPrice}',
-                        style: TextStyle(
-                          decoration: TextDecoration.lineThrough,
-                        ),
+              if (widget.meal.isDiscounted())
+                Expanded(
+                  child: Center(
+                    child: Text(
+                      '\$${widget.meal.originalPrice}',
+                      style: TextStyle(
+                        decoration: TextDecoration.lineThrough,
                       ),
-                    SizedBox(
-                      width: 30,
-                    )
-                  ],
-                ),
-              ),
+                    ),
+                  ),
+                )
+              else
+                Spacer(),
               Text(
                 '\$${widget.meal.price}',
                 style: TextStyle(
                     color: color, fontSize: 20, fontWeight: FontWeight.bold),
               ),
-              Spacer(
-                flex: 1,
-              )
+              Spacer(),
             ])
           ],
         ),

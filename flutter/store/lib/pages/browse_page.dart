@@ -34,7 +34,7 @@ class _BrowsePageState extends State<BrowsePage> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Spacer(
+            const Spacer(
               flex: 1,
             ),
             InkWell(
@@ -47,13 +47,11 @@ class _BrowsePageState extends State<BrowsePage> {
                   }
                 });
               },
-              child: Container(
-                child: Icon(
-                  Icons.emoji_food_beverage,
-                ),
+              child: const Icon(
+                Icons.emoji_food_beverage,
               ),
             ),
-            Spacer(
+            const Spacer(
               flex: 4,
             ),
             InkWell(
@@ -66,13 +64,11 @@ class _BrowsePageState extends State<BrowsePage> {
                   }
                 });
               },
-              child: Container(
-                child: Icon(
-                  Icons.restaurant_menu,
-                ),
+              child: const Icon(
+                Icons.restaurant_menu,
               ),
             ),
-            Spacer(
+            const Spacer(
               flex: 1,
             )
           ],

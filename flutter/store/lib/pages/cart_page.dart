@@ -43,7 +43,7 @@ class CartPage extends StatelessWidget {
       body: Column(
         children: [
           SizedBox(
-            height: 450,
+            height: nrOfTiles * tileHeight,
             child: ListView.builder(
               itemCount: nrOfTiles,
               itemBuilder: (context, index) {
@@ -55,9 +55,7 @@ class CartPage extends StatelessWidget {
             color: Colors.black,
           ),
           totalPriceWidget(100, total),
-          SizedBox(
-            height: 200,
-          ),
+          Spacer(),
           TextButton(
             onPressed: () {},
             child: Container(
@@ -74,6 +72,9 @@ class CartPage extends StatelessWidget {
               ),
             ),
           ),
+          SizedBox(
+            height: 10,
+          )
         ],
       ),
     );
