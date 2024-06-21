@@ -40,43 +40,47 @@ class CartPage extends StatelessWidget {
     }
     int nrOfTiles = meals.length;
     return Scaffold(
-      body: Column(
-        children: [
-          SizedBox(
-            height: nrOfTiles * tileHeight,
-            child: ListView.builder(
-              itemCount: nrOfTiles,
-              itemBuilder: (context, index) {
-                return ListCard(meal: meals[index], height: tileHeight);
-              },
+      body: Builder(builder: (context) {
+        double availableHeight = MediaQuery.of(context).size.height;
+        return Column(
+          children: [
+            // SizedBox(
+            //   height: nrOfTiles * tileHeight,
+            //   child: ListView.builder(
+            //     itemCount: nrOfTiles,
+            //     itemBuilder: (context, index) {
+            //       return ListCard(meal: meals[index], height: tileHeight);
+            //     },
+            //   ),
+            // ),
+            for (Meal meal in meals) ListCard(meal: meal, height: tileHeight),
+            Divider(
+              color: Colors.black,
             ),
-          ),
-          Divider(
-            color: Colors.black,
-          ),
-          totalPriceWidget(100, total),
-          Spacer(),
-          TextButton(
-            onPressed: () {},
-            child: Container(
-              alignment: Alignment.center,
-              height: 40,
-              width: 400,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                color: Colors.purple,
-              ),
-              child: const Text(
-                'PLACE ORDER',
-                style: TextStyle(color: Colors.white, fontSize: 13.0),
+            totalPriceWidget(100, total),
+            Spacer(),
+            TextButton(
+              onPressed: () {},
+              child: Container(
+                alignment: Alignment.center,
+                height: 40,
+                width: 400,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  color: Colors.purple,
+                ),
+                child: const Text(
+                  'PLACE ORDER',
+                  style: TextStyle(color: Colors.white, fontSize: 13.0),
+                ),
               ),
             ),
-          ),
-          SizedBox(
-            height: 10,
-          )
-        ],
-      ),
+            SizedBox(
+              height: 10,
+            )
+          ],
+        );
+      }),
     );
   }
 }
