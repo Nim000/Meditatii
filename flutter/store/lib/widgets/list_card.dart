@@ -26,7 +26,7 @@ class ListCard extends StatelessWidget {
         subtitle: Row(
           children: [
             Text(
-              '\$${meal.price}',
+              '\$${meal.price}   ',
               style: TextStyle(
                   color: Color(0xFF8A3490),
                   fontSize: 20,
@@ -39,6 +39,8 @@ class ListCard extends StatelessWidget {
                   decoration: TextDecoration.lineThrough,
                 ),
               ),
+            Spacer(),
+            IconButton(onPressed: () {}, icon: Icon(Icons.close))
           ],
         ),
       ),

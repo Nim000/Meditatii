@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:store/model/dummy_data.dart';
 import 'package:store/model/meal.dart';
@@ -10,7 +11,21 @@ class CartPage extends StatelessWidget {
     return Container(
       height: height,
       alignment: Alignment.centerRight,
-      child: Text("Total:"),
+      child: RichText(
+        text: TextSpan(
+          text: 'Total: ',
+          style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0)),
+          children: [
+            TextSpan(
+              text: "$price\$    ",
+              style: TextStyle(
+                color: Color.fromRGBO(51, 144, 124, 1),
+                fontWeight: FontWeight.bold,
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 
@@ -18,35 +33,48 @@ class CartPage extends StatelessWidget {
   Widget build(BuildContext context) {
     const double tileHeight = 175;
     const double totalPriceHeight = 100;
+    double total = 0;
+    List<Meal> meals = DummyData.getSelectedMeals();
+    for (Meal meal in meals) {
+      total += meal.price;
+    }
+    int nrOfTiles = meals.length;
     return Scaffold(
-      body: LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) {
-          List<Meal> meals = DummyData.getSelectedMeals();
-          int nrOfTiles = meals.length;
-          double totalHeight = nrOfTiles * tileHeight + totalPriceHeight;
-          if (constraints.maxHeight < totalHeight)
-            return Column(
-              children: [
-                Expanded(
-                  child: ListView(
-                    children: [
-                      for (int i = 0; i < nrOfTiles; i++)
-                        ListCard(meal: meals[i], height: tileHeight)
-                    ],
-                  ),
-                ),
-                totalPriceWidget(totalPriceHeight, 100)
-              ],
-            );
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              for (int i = 0; i < nrOfTiles; i++)
-                ListCard(meal: meals[i], height: tileHeight),
-              totalPriceWidget(totalPriceHeight, 100),
-            ],
-          );
-        },
+      body: Column(
+        children: [
+          SizedBox(
+            height: 450,
+            child: ListView.builder(
+              itemCount: nrOfTiles,
+              itemBuilder: (context, index) {
+                return ListCard(meal: meals[index], height: tileHeight);
+              },
+            ),
+          ),
+          Divider(
+            color: Colors.black,
+          ),
+          totalPriceWidget(100, total),
+          SizedBox(
+            height: 200,
+          ),
+          TextButton(
+            onPressed: () {},
+            child: Container(
+              alignment: Alignment.center,
+              height: 40,
+              width: 400,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+                color: Colors.purple,
+              ),
+              child: const Text(
+                'PLACE ORDER',
+                style: TextStyle(color: Colors.white, fontSize: 13.0),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
