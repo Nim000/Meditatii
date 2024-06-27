@@ -47,7 +47,10 @@ class _BrowsePageState extends State<BrowsePage> {
                   }
                 });
               },
-              child: const Icon(
+              child: Icon(
+                color: category == MealCategory.Beverage
+                    ? Colors.white
+                    : Colors.black,
                 Icons.emoji_food_beverage,
               ),
             ),
@@ -64,7 +67,10 @@ class _BrowsePageState extends State<BrowsePage> {
                   }
                 });
               },
-              child: const Icon(
+              child: Icon(
+                color: category == MealCategory.Fruit
+                    ? Colors.white
+                    : Colors.black,
                 Icons.restaurant_menu,
               ),
             ),

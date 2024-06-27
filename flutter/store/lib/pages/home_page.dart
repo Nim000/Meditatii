@@ -3,6 +3,7 @@ import 'package:store/pages/browse_page.dart';
 import 'package:store/pages/cart_page.dart';
 import 'package:store/pages/store_page.dart';
 import 'package:store/pages/coupons_page.dart';
+import 'package:store/widgets/shopping_icon.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -40,9 +41,8 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Color(0xFF8A3490),
         actions: [
           IconButton(
-            icon: Icon(
-              Icons.shopping_cart,
-              color: Colors.white,
+            icon: ShoppingIcon(
+              num: 3,
             ),
             onPressed: () {
               _onItemTapped(3);
@@ -69,7 +69,9 @@ class _HomePageState extends State<HomePage> {
             backgroundColor: Color(0xFF8A3490),
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart),
+              icon: ShoppingIcon(
+                num: 3,
+              ),
               label: labels[3],
               backgroundColor: Color(0xFF8A3490)),
         ],

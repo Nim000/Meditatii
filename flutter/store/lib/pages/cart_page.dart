@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
@@ -5,8 +6,20 @@ import 'package:store/model/dummy_data.dart';
 import 'package:store/model/meal.dart';
 import 'package:store/widgets/list_card.dart';
 
-class CartPage extends StatelessWidget {
+class CartPage extends StatefulWidget {
   const CartPage({super.key});
+
+  @override
+  State<CartPage> createState() => _CartPageState();
+}
+
+class _CartPageState extends State<CartPage> {
+  void deleteItem(Meal meal) {
+    setState(() {
+      meal.isSelected = false;
+    });
+  }
+
   Widget totalPriceWidget(double height, double price) {
     return Container(
       height: height,
@@ -45,13 +58,11 @@ class CartPage extends StatelessWidget {
       body: Builder(
         builder: (context) {
           double avalibleHeight = MediaQuery.of(context).size.height;
-          print(avalibleHeight);
-          print(totalHeight);
           if (totalHeight < avalibleHeight) {
             return Column(
               children: [
                 for (Meal meal in meals)
-                  ListCard(meal: meal, height: tileHeight),
+                  ListCard(meal: meal, height: tileHeight, delete: deleteItem),
                 Divider(
                   height: 1,
                 ),
@@ -81,12 +92,14 @@ class CartPage extends StatelessWidget {
           }
           return Column(
             children: [
-              SizedBox(
-                height: avalibleHeight - 150,
+              Expanded(
                 child: ListView.builder(
                   itemCount: nrOfTiles,
                   itemBuilder: (context, index) {
-                    return ListCard(meal: meals[index], height: tileHeight);
+                    return ListCard(
+                        meal: meals[index],
+                        height: tileHeight,
+                        delete: deleteItem);
                   },
                 ),
               ),
@@ -94,7 +107,6 @@ class CartPage extends StatelessWidget {
                 height: 1,
               ),
               totalPriceWidget(totalPriceHeight, total),
-              Spacer(),
               TextButton(
                 onPressed: () {},
                 child: Container(
