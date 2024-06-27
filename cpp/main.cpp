@@ -2,11 +2,13 @@
 
 using namespace std;
 int f(int x){
-    return f(x);
+    if(x % 2 == 0)
+        return 1;
+    return 0;
 }
 
 int main()
 {
-    cout<<f(3);
+    cout << f(2);
     return 0;
 }
